@@ -3963,8 +3963,7 @@ class Vertices extends NativeFieldWrapperClass1 {
       throw ArgumentError('"positions" and "textureCoordinates" lengths must match.');
     if (colors != null && colors.length * 2 != positions.length)
       throw ArgumentError('"positions" and "colors" lengths must match.');
-    if (indices != null && indices.any((int i) => i < 0 || i >= positions.length))
-      throw ArgumentError('"indices" values must be valid indices in the positions list.');
+    assert (indices == null || !indices.any((int i) => i < 0 || i >= positions.length));
 
     if (!_init(this, mode.index, positions, textureCoordinates, colors, indices))
       throw ArgumentError('Invalid configuration for vertices.');
